@@ -1,14 +1,14 @@
-#reg import .\registryChanger.reg
+reg import .\registryChanger.reg
 
 if ( $null -eq ('System.Windows.MessageBox' -as [type]) ) {
     Add-Type -AssemblyName PresentationFramework
 }
 
-$msgBoxInput =  [System.Windows.MessageBox]::Show(
-    "The changes to take effect you have to restart the File Explorer or restart the PC, Do you want to restart File Explorer?",
+$messageBoxInput =  [System.Windows.MessageBox]::Show(
+    "To apply the changes, you will need to restart File Explorer or your PC. Would you like to restart File Explorer now?",
     'Warning',
     'YesNo')
-switch  ($msgBoxInput) 
+switch  ($messageBoxInput) 
       {
           'Yes' {
             Get-Process Explorer | Stop-Process
